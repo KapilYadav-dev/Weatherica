@@ -1,6 +1,7 @@
-package `in`.kay.weatherica.Views
+package `in`.kay.weatherica.views
 
 import `in`.kay.weatherica.R
+import `in`.kay.weatherica.data.api.model.WeatherModel
 import `in`.kay.weatherica.ui.theme.Hint
 import `in`.kay.weatherica.ui.theme.Poppins
 import `in`.kay.weatherica.ui.theme.Purple
@@ -10,7 +11,6 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
@@ -19,46 +19,13 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
 
-@Preview
 @Composable
-fun Home() {
-    val strTemp = remember {
-        "28°C"
-    }
-    val strCity = remember {
-        "Banglore"
-    }
-    val strDate = remember {
-        "19th June 2022, 28°C/40°C"
-    }
-
-    val strPrediction = remember {
-        "Sunny Sky"
-    }
-    val strPressue = remember {
-        "800hcpa"
-    }
-    val strPrecipitation = remember {
-        "2 mm"
-    }
-    val strHumidity = remember {
-        "56%"
-    }
-    val strAir = remember {
-        "34"
-    }
-    val strWind = remember {
-        "4 km/h"
-    }
-    val strVisibility = remember {
-        "11 km"
-    }
+fun Home(data : WeatherModel) {
     ConstraintLayout(
         modifier = Modifier
             .background(Color.White)
@@ -88,7 +55,7 @@ fun Home() {
         ) {
             val (tvTemp, tvCity, tvDate, tvPrediction, ivPrediction, viewDetails) = createRefs()
             Text(
-                text = strTemp,
+                text = data.strTemp.toString(),
                 fontSize = 60.sp,
                 color = Color.White,
                 fontFamily = Poppins,
@@ -104,7 +71,7 @@ fun Home() {
 
             )
             Text(
-                text = strCity,
+                text = data.strCity.toString(),
                 fontSize = 22.sp,
                 color = Color.White,
                 fontFamily = Poppins,
@@ -117,7 +84,7 @@ fun Home() {
             )
 
             Text(
-                text = strDate,
+                text = data.strDate.toString(),
                 fontSize = 12.sp,
                 color = Color.White,
                 fontFamily = Poppins,
@@ -129,7 +96,7 @@ fun Home() {
 
             )
             Text(
-                text = strPrediction,
+                text = data.strPrediction.toString(),
                 fontSize = 18.sp,
                 color = Color.White,
                 fontFamily = Poppins,
@@ -142,7 +109,7 @@ fun Home() {
             )
 
             Image(
-                painter = painterResource(id = R.drawable.ic_sun),
+                painter = painterResource(id = R.drawable.ic_cloud),
                 contentDescription = "",
                 modifier = Modifier
                     .height(110.dp)
@@ -166,19 +133,19 @@ fun Home() {
                     horizontalArrangement = Arrangement.SpaceBetween,
                     modifier = Modifier.fillMaxWidth()
                 ) {
-                    Detail("Pressue", strPressue)
-                    Detail("Precipitation", strPrecipitation)
+                    Detail("Pressue", data.strPressue.toString())
+                    Detail("Precipitation", data.strPrecipitation.toString())
 
-                    Detail("Humidity", strHumidity)
+                    Detail("Humidity", data.strHumidity.toString())
                 }
                 Spacer(modifier = Modifier.height(32.dp))
                 Row(
                     horizontalArrangement = Arrangement.SpaceBetween,
                     modifier = Modifier.fillMaxWidth()
                 ) {
-                    Detail("Air Quality", strAir)
-                    Detail("Wind", strWind)
-                    Detail("Visibility", strVisibility)
+                    Detail("Air Quality", data.strAir.toString())
+                    Detail("Wind", data.strWind.toString())
+                    Detail("Visibility", data.strVisibility.toString())
                 }
             }
         }
