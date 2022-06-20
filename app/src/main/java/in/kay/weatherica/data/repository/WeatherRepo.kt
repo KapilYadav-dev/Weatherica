@@ -9,6 +9,6 @@ class WeatherRepo @Inject constructor(
     private val weatherApi: WeatherApi
 ) {
     suspend fun getWeather(city: String): WeatherData {
-        return weatherApi.getWeather(apiKey = ApiConstants.apiKey, place = city)
+        return weatherApi.getWeather(apiKey = ApiConstants.apiKey, city = city)
     }
 }

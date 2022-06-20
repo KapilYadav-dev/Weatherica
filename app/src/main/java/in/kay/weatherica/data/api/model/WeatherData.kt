@@ -6,100 +6,114 @@ import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
 data class WeatherData(
-    @Json(name = "base")
-    val base: String="",
-    @Json(name = "clouds")
-    val clouds: Clouds= Clouds(),
-    @Json(name = "cod")
-    val cod: Int=0,
-    @Json(name = "coord")
-    val coord: Coord= Coord(),
-    @Json(name = "dt")
-    val dt: Int=0,
-    @Json(name = "id")
-    val id: Int=0,
-    @Json(name = "main")
-    val main: Main= Main(),
-    @Json(name = "name")
-    val name: String="",
-    @Json(name = "sys")
-    val sys: Sys= Sys(),
+    @Json(name = "address")
+    val address: String = "",
+    @Json(name = "currentConditions")
+    val currentConditions: CurrentConditions = CurrentConditions(),
+    @Json(name = "days")
+    val days: List<Day> = listOf(),
+    @Json(name = "latitude")
+    val latitude: Double = 0.0,
+    @Json(name = "longitude")
+    val longitude: Double = 0.0,
+    @Json(name = "queryCost")
+    val queryCost: Int = 0,
+    @Json(name = "resolvedAddress")
+    val resolvedAddress: String = "",
     @Json(name = "timezone")
-    val timezone: Int=0,
-    @Json(name = "visibility")
-    val visibility: Int=0,
-    @Json(name = "weather")
-    val weather: List<Weather> = emptyList(),
-    @Json(name = "wind")
-    val wind: Wind=Wind()
+    val timezone: String = "",
+    @Json(name = "tzoffset")
+    val tzoffset: Double = 0.0
 ) {
     @JsonClass(generateAdapter = true)
-    data class Clouds(
-        @Json(name = "all")
-        val all: Int = 0
-    )
-
-    @JsonClass(generateAdapter = true)
-    data class Coord(
-        @Json(name = "lat")
-        val lat: Double=0.0,
-        @Json(name = "lon")
-        val lon: Double=0.0
-    )
-
-    @JsonClass(generateAdapter = true)
-    data class Main(
-        @Json(name = "feels_like")
-        val feelsLike: Double=0.0,
-        @Json(name = "grnd_level")
-        val grndLevel: Int=0,
+    data class CurrentConditions(
+        @Json(name = "cloudcover")
+        val cloudcover: Double = 0.0,
+        @Json(name = "conditions")
+        val conditions: String = "",
+        @Json(name = "datetime")
+        val datetime: String = "",
+        @Json(name = "datetimeEpoch")
+        val datetimeEpoch: Long = 0,
+        @Json(name = "feelslike")
+        val feelslike: Double = 0.0,
         @Json(name = "humidity")
-        val humidity: Int=0,
-        @Json(name = "pressure")
-        val pressure: Int=0,
-        @Json(name = "sea_level")
-        val seaLevel: Int=0,
-        @Json(name = "temp")
-        val temp: Double=0.0,
-        @Json(name = "temp_max")
-        val tempMax: Double=0.0,
-        @Json(name = "temp_min")
-        val tempMin: Double=0.0
-    )
-
-    @JsonClass(generateAdapter = true)
-    data class Sys(
-        @Json(name = "country")
-        val country: String="",
-        @Json(name = "id")
-        val id: Int=0,
-        @Json(name = "sunrise")
-        val sunrise: Int=0,
-        @Json(name = "sunset")
-        val sunset: Int=0,
-        @Json(name = "type")
-        val type: Int=0
-    )
-
-    @JsonClass(generateAdapter = true)
-    data class Weather(
-        @Json(name = "description")
-        val description: String,
+        val humidity: Double = 0.0,
         @Json(name = "icon")
-        val icon: String,
-        @Json(name = "id")
-        val id: Int=0,
-        @Json(name = "main")
-        val main: String
+        val icon: String = "",
+        @Json(name = "precip")
+        val precip: Double = 0.0,
+        @Json(name = "pressure")
+        val pressure: Double = 0.0,
+        @Json(name = "sunrise")
+        val sunrise: String = "",
+        @Json(name = "sunriseEpoch")
+        val sunriseEpoch: Long = 0,
+        @Json(name = "sunset")
+        val sunset: String = "",
+        @Json(name = "sunsetEpoch")
+        val sunsetEpoch: Long = 0,
+        @Json(name = "temp")
+        val temp: Double = 0.0,
+        @Json(name = "uvindex")
+        val uvindex: Double = 0.0,
+        @Json(name = "visibility")
+        val visibility: Double = 0.0,
+        @Json(name = "windspeed")
+        val windspeed: Double = 0.0
     )
 
     @JsonClass(generateAdapter = true)
-    data class Wind(
-        @Json(name = "deg")
-        val deg: Int=0,
-        @Json(name = "gust")
-        val gust: Double=0.0,
-        @Json(name = "speed")
-        val speed: Double=0.0
+    data class Day(
+        @Json(name = "cloudcover")
+        val cloudcover: Double = 0.0,
+        @Json(name = "conditions")
+        val conditions: String = "",
+        @Json(name = "datetime")
+        val datetime: String = "",
+        @Json(name = "datetimeEpoch")
+        val datetimeEpoch: Long = 0,
+        @Json(name = "description")
+        val description: String = "",
+        @Json(name = "feelslike")
+        val feelslike: Double = 0.0,
+        @Json(name = "feelslikemax")
+        val feelslikemax: Double = 0.0,
+        @Json(name = "feelslikemin")
+        val feelslikemin: Double = 0.0,
+        @Json(name = "humidity")
+        val humidity: Double = 0.0,
+        @Json(name = "icon")
+        val icon: String = "",
+        @Json(name = "precip")
+        val precip: Double = 0.0,
+        @Json(name = "precipprob")
+        val precipprob: Double = 0.0,
+        @Json(name = "pressure")
+        val pressure: Double = 0.0,
+        @Json(name = "sunrise")
+        val sunrise: String = "",
+        @Json(name = "sunriseEpoch")
+        val sunriseEpoch: Int = 0,
+        @Json(name = "sunset")
+        val sunset: String = "",
+        @Json(name = "sunsetEpoch")
+        val sunsetEpoch: Int = 0,
+        @Json(name = "temp")
+        val temp: Double = 0.0,
+        @Json(name = "tempmax")
+        val tempmax: Double = 0.0,
+        @Json(name = "tempmin")
+        val tempmin: Double = 0.0,
+        @Json(name = "uvindex")
+        val uvindex: Int = 0,
+        @Json(name = "visibility")
+        val visibility: Double = 0.0,
+        @Json(name = "winddir")
+        val winddir: Double = 0.0,
+        @Json(name = "windgust")
+        val windgust: Double = 0.0,
+        @Json(name = "windspeed")
+        val windspeed: Double = 0.0
     )
 }
