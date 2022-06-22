@@ -36,17 +36,19 @@ import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.time.format.FormatStyle
+import java.util.*
 
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun Home() {
     val homeViewModel = viewModel(modelClass = HomeViewModel::class.java)
-    val data = homeViewModel.getData("Ranipur").collectAsState().value
+    val data = homeViewModel.getData("Antartica").collectAsState().value
     val current = LocalDateTime.now()
     val formatter = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM)
     val date = current.format(formatter)
-    val day = LocalDate.now().dayOfWeek.name.toLowerCase().capitalize()
+    val day = LocalDate.now().dayOfWeek.name.lowercase(Locale.getDefault())
+        .replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() }
 
 
     ConstraintLayout(
